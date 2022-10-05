@@ -1,21 +1,23 @@
 import React from "react";
 import { View, Text,TextInput,Button,StyleSheet,TouchableOpacity } from 'react-native'
 
-export default function Login(){
+export default function RegisterPage(){
     return(
         <View style = {StyleSheet.container}>
 
-            <TextInput style = {styles.input1} placeholder = 'Username' />
-            <TextInput style = {styles.input2} placeholder = 'Password' />
+            <Text>Registeration</Text>
 
+            <TextInput style = {styles.input1} placeholder = 'Registration Id' />
+            <TextInput style = {styles.input2} placeholder = 'Name' />
+            <TextInput style = {styles.input3} placeholder = 'Address' />
+            
             <TouchableOpacity style = {styles.btn}>
-                <Text style = {{color: '#ffff',fontSize:20}}>Login</Text>
+                <Text style = {{color: '#ffff',fontSize:20}}>Register</Text>
             </TouchableOpacity>
             
         </View>
     )
 }
-
 const styles = StyleSheet.create({
     input1:{
         marginTop:'40%',
@@ -34,6 +36,14 @@ const styles = StyleSheet.create({
         borderRadius:100
     },
 
+    input3:{
+        marginTop:'5%',
+        borderWidth: 1,
+        padding: 10,
+        width:'80%',
+        borderRadius:100
+    },
+
     container:{
      justifyContent:'center',
      alignItems:'center'
@@ -42,7 +52,7 @@ const styles = StyleSheet.create({
     btn:{
         width:'60%',
         padding:5,
-        backgroundColor:"green",
+        backgroundColor:"blues",
         height:50,
         alignItems:'center',
         justifyContent:'center',
