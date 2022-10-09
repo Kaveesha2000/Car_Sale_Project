@@ -1,21 +1,23 @@
 import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import Logo from "./assets/login.jpg"
 
 export default function Login(){
     return(
         <View style = {StyleSheet.container}>
 
-            <Image source={Logo} alt = "Login png" style = {styles.image1}/>
+            <ImageBackground source={require("./assets/loginback.jpg")} resizeMode="cover" style={styles.image1}>
+                <Image source={Logo} alt = "Login png" style = {styles.image2}/>
 
-            <TextInput style = {styles.input1} placeholder = 'Username' />
-            <TextInput style = {styles.input2} placeholder = 'Password' />
+                <TextInput style = {styles.input1} placeholder = 'Username' />
+                <TextInput style = {styles.input2} placeholder = 'Password' />
 
-            <TouchableOpacity style = {styles.btn}>
-                <Text style = {{color: '#ffff',fontSize:20}}>Login</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style = {styles.btn}>
+                    <Text style = {{color: '#ffff',fontSize:20}}>Login</Text>
+                </TouchableOpacity>
 
-            <Text style = {styles.text1}>Create a new account</Text>
+                <Text style = {styles.text1}>Create a new account</Text>
+            </ImageBackground>
             
         </View>
     )
@@ -24,9 +26,14 @@ export default function Login(){
 const styles = StyleSheet.create({
 
     image1:{
+        width: '100%',
+        height: '100%'
+    },
+
+    image2:{
         width:'50%',
         marginTop: '10%',
-        marginLeft: '25%'
+        marginLeft: '25%',
     },
 
     input1:{
@@ -49,8 +56,8 @@ const styles = StyleSheet.create({
     },
 
     container:{
-     justifyContent:'center',
-     alignItems:'center'
+        justifyContent:'center',
+        alignItems:'center'
     },
     
     btn:{
