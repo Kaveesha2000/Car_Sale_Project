@@ -1,90 +1,52 @@
-import { color } from "native-base/lib/typescript/theme/styled-system";
-import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
+import React, { useState } from 'react'
+import { NativeBaseProvider, Text, Input, VStack, Button } from 'native-base'
+import { Alert, StyleSheet,ImageBackground } from 'react-native';
 
-export default function RegisterPage(){
-    return(
-        
-        <View style = {StyleSheet.container}>
+export default function AddData({navigation}) {
+    const [regId, setCarId] = useState('');
+    const [name, setBrand] = useState('');
+    const [password, setType] = useState('');
+    const [address, setColor] = useState('');
 
+    const saveData = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({
+                regId: regId,
+                name: name,
+                password: password,
+                address: address
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => {Alert.alert("Save Saved Successfully !")})
+            .catch((err)=>{Alert.alert("Error occured !")})
+    }
+
+    return (
+        <NativeBaseProvider>
             <ImageBackground source={require("./assets/back.jpg")} resizeMode="cover" style={styles.image1}>
-                <TextInput style = {styles.input1} placeholder = 'Registration Id' />
-                <TextInput style = {styles.input2} placeholder = 'Name' />
-                <TextInput style = {styles.input4} placeholder= 'Enter your Password' autoCorrect={false} secureTextEntry={true} textContentType='password'></TextInput>
-                <TextInput style = {styles.input3} placeholder = 'Address' />
-
-                <TouchableOpacity style = {styles.btn}>
-                    <Text style = {{color: '#ffff',fontSize:20}}>Register</Text>
-                </TouchableOpacity>
-
+                <Text fontSize="3xl" bold  color={"white"} underline mt="10%" ml="25%">Customer Register</Text>
+                <VStack space={4} alignItems="center" mt="15%">
+                    <Input mx="3" color={"white"} placeholderTextColor={"white"} value={regId} onChangeText={(e) => { setCarId(e) }} placeholder="Register Id" w="80%"/>
+                    <Input mx="3" color={"white"} placeholderTextColor={"white"} value={name} onChangeText={(e) => { setBrand(e) }} placeholder="Name" w="80%"/>
+                    <Input mx="3" color={"white"} placeholderTextColor={"white"} value={password} onChangeText={(e)=>{ setType(e) }} placeholder= 'Enter your Password' autoCorrect={false} secureTextEntry={true} textContentType='Password' w="80%"></Input>
+                    <Input mx="3" color={"white"} placeholderTextColor={"white"} value={address} onChangeText={(e) => { setColor(e) }} placeholder="Address" w="80%"/>
+                    <Button width={"50%"} size="md" variant="subtle" colorScheme="secondary" onPress={saveData}>
+                        Save
+                    </Button>
+                </VStack>
             </ImageBackground>
-            
-        </View>
+        </NativeBaseProvider>
     )
 }
 const styles = StyleSheet.create({
-
 
     image1:{
         width: '100%',
         height: '100%',
         opacity: 0.8
     },
-
-    input1:{
-        marginTop:'40%',
-        marginLeft: '10%',
-        borderWidth: 1,
-        padding: 10,
-        width:'80%',
-        borderRadius:100,
-        backgroundColor: 'white'
-    },
-
-    input2:{
-        marginTop:'5%',
-        marginLeft: '10%',
-        borderWidth: 1,
-        padding: 10,
-        width:'80%',
-        borderRadius:100,
-        backgroundColor: 'white'
-    },
-
-    input3:{
-        marginTop:'5%',
-        marginLeft: '10%',
-        borderWidth: 1,
-        padding: 10,
-        width:'80%',
-        borderRadius:100,
-        backgroundColor: 'white'
-    },
-
-    input4:{
-        marginTop:'5%',
-        marginLeft: '10%',
-        borderWidth: 1,
-        padding: 10,
-        width:'80%',
-        borderRadius:100,
-        backgroundColor: 'white'
-    },
-
-    container:{
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    
-    btn:{
-        width:'50%',
-        padding: 5,
-        backgroundColor:"blue",
-        height:50,
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:'5%',
-        marginLeft: '26%',
-        borderRadius:100
-    }
 });

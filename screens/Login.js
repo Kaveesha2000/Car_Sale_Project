@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     },
     
     btn:{
-        width:'60%',
+        width:'50%',
         padding:5,
         backgroundColor:"blue",
         height:50,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:'3%',
-        marginLeft : '20%',
+        marginTop:'5%',
+        marginLeft : '25%',
         borderRadius:100
 
     },
